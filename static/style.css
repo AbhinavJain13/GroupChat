@@ -1,0 +1,19 @@
+
+#chatroom {
+	border: 1px solid black;
+	padding: 5%;
+	margin: 5%;
+	width: 100%;
+	min-height: 10%;
+	max-height: 50%;
+	overflow: scroll;
+	list-style-type: none;
+}
+
+.message_text {
+	color: blue;
+}
+
+.author {
+	color: red;
+}
