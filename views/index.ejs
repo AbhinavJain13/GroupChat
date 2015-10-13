@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class = 'row'>
-		<div class = 'col-xs-2'></div>
+		<div class = 'col-xs-1'></div>
 		<div class = 'col-xs-8 chat'>
 			<h1>Conversation Board</h1>
 			<div id = 'conversation_board'>
@@ -25,11 +25,14 @@
 				</ul>
 			</div>
 			<form id = 'new_message'>
-				<input id = 'message' type = 'text' name = 'message'>
-				<input type = 'hidden' name = 'id' id = 'id_holder' value = ''>
-				<input type = 'hidden' id = 'name_holder' value = ''>
-				<input type = 'submit' value = 'Send'>
+				<input id = 'message' type = 'text'>
+				<input type = 'submit' value = 'Post message to chatroom'>
 			</form>
+		</div>
+		<div id = 'user_table' class ='col-xs-3'>
+			<h1>Users</h1>
+			<ul id = 'user_list'>
+			</ul>
 		</div>
 	</div>
 	<div class = 'row'>
@@ -39,7 +42,7 @@
 			<div class = 'row'>
 			</div>
 			<form id = "new">
-				Your Name<input class="form-control" type = 'text' name = 'name' id = 'name'>
+				<input class="form-control" type = 'text' name = 'name' id = 'name'>
 				<input type = 'submit' value = 'Submit'>
 			</form>
 		</div>

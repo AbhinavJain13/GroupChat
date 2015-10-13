@@ -1,13 +1,17 @@
+* {
+	/*outline: 1px dotted red;*/
+	list-style-type: none;
+	overflow: scroll;
+	margin: 0;
+	padding: 0;
+}
 
 #chatroom {
 	border: 1px solid black;
 	padding: 5%;
-	margin: 5%;
 	width: 100%;
 	min-height: 10%;
 	max-height: 50%;
-	overflow: scroll;
-	list-style-type: none;
 }
 
 .message_text {
@@ -17,3 +21,12 @@
 .author {
 	color: red;
 }
+
+#new_message input{
+	width: 100%;
+}
+
+/*#user_table,
+#conversation_board {
+	display: inline-block;
+}*/

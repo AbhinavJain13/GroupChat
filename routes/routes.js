@@ -7,9 +7,8 @@ module.exports = function Route(app, server){
 	if (messages === undefined) {
 		messages = [];
 	}
-	
+
 	var users = [];
-	var current_user
 
 	app.get('/', function (req, res) {
 		res.render('index');
@@ -22,42 +21,55 @@ module.exports = function Route(app, server){
 
 
 		socket.on('adding_user', function(data) {
-			console.log('recieved from front-end: '+data.name)
 
 			var new_user = {
 				name: data.name,
 				id: socket.id
 			}
 
-			current_user = new_user;
-
 			users.push(new_user);
-
-			console.log("Here's the user array: "+users)
 			
-			socket.broadcast.emit("user_added", {user: new_user});
+			socket.broadcast.emit("user_added", {user: new_user, users: users});
 
 			socket.emit("welcome", {
 				messages: messages,
 				user: new_user
 			});
 
+			io.emit("fill_user_table", {users: users})
+
 		});
 
 		socket.on("new_message", function(data){
-			console.log("Serverside: "+data.message+" -- "+data.author);
-			messages.push(data);
-			console.log('Messages array: '+messages)
+			for (user in users) {
+				if (users[user].id === socket.id){
+					var message = {
+						message: data.message,
+						author: users[user].name
+					}
+					break;
+				}
+			}
+
+			messages.push(message);
+
 			io.emit("message_added", {
-				message: data
+				message: message
 			})
 		})
 
 		socket.on('disconnect', function(){
-			
 			console.log('Disconnected ID: '+socket.id);
-
-			// socket.broadcast.emit("disconnected_user", {data: id});
+			
+			for (user in users){
+				if(users[user].id === socket.id){
+					var lost_user = users[user].name
+					users.splice(users[user],1);
+					break;
+				}
+			}
+			io.emit("user_left", {user: lost_user})
+			io.emit("fill_user_table", {users: users})
 		});
 	})
 
