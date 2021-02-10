@@ -3,7 +3,7 @@
   "description": "Survey Form assignment",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "ejs": "1.0.0",
+    "ejs": "3.1.6",
     "express": "~4.10.0",
     "socket.io": "^1.3.7"
   }
